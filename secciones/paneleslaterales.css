@@ -1,0 +1,101 @@
+/*para panel izquierdo de presentación*/
+.persona1{
+	height: 60px;
+	margin: 9px auto;
+	display: flex;
+
+
+}
+	.img{
+		height: 60px;
+		width: 60px;
+		border: 3px solid #FF5733;
+
+
+	}
+	.ote{
+		height: 60px;
+		width: auto;
+		align-content: center;
+		margin-left: 4px;
+		padding: 4px;
+		background: #FF5733;
+		color: #C70030;
+	}
+
+.persona2{
+	height: 60px;
+	margin: 9px auto;
+	display: flex;
+
+}
+	.img2{
+		height: 60px;
+		width: 60px;
+		border: 3px solid #FF5733;
+		
+
+
+	}
+	.fran{
+		height: 60px;
+		width: auto;
+		align-content: center;
+		margin-right: 4px;
+		padding: 4px;
+		background: #FF5733;
+		color: #C70030;
+
+	}
+
+.misión{
+	margin: 9px auto;
+	height: auto;
+}
+
+.misióntext{
+	background: #900C3F;
+	padding: 10px;
+	align-content: center;
+}
+
+.visión{
+	margin: 9px auto #C70030;
+	height: auto;
+}
+
+.visióntext{
+	background: #900C3F;
+	padding: 10px;
+	align-content: center;
+}
+/* para panel derecho de opciones*/
+
+.opciones{
+	margin: 9px auto;
+	background: #900C3F;
+	border-radius: 10px;
+	text-align: center;
+	align-content: center;
+	padding: 10px;
+	cursor: pointer;
+	color: #FFC300;
+	box-shadow: 0px 0px 10px black;
+	transition: all 0.4s ease;
+
+
+
+}
+.opciones:hover {
+    background-color: #501045;
+    transform: scale(1.1);
+    z-index: 1;
+}
+.opciones:active {
+	background-color: purple;
+		transform: scale(1.0);
+
+
+
+}
+

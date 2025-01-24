@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .galeria {
+            column-count: 3; 
+            column-gap: 10px;
+            padding: 10px;
+        }
+        .elemento-galeria {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 10px;
+            break-inside: avoid;
+            transition: all 0.4s ease;
+        }
+        .elemento-galeria:hover{
+            transform: scale(1.1);
+            z-index: 1;
+        }
+        .elemento-galeria img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .pie-imagen {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .contenido-lightbox {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .contenido-lightbox img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 80vh; 
+            object-fit: contain; 
+            border-radius: 8px;
+        }
+        .pie-lightbox {
+            text-align: center;
+            margin-top: 10px;
+            color: #fff;
+            font-size: 16px;
+        }
+        .cerrar {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .cerrar:hover,
+        .cerrar:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="galeria">
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/mural.jpg" alt="mural" onclick="abrirLightbox();mostrarSlide(1)">
+            <div class="pie-imagen">Mural DiCu</div>
+        </div>  
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/taekwondo.jpg" alt="taekwondo" onclick="abrirLightbox();mostrarSlide(2)">
+            <div class="pie-imagen">Taller de Taekwondo</div>
+        </div>  
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/taekwondo1.jpg" alt="taekwondo1" onclick="abrirLightbox();mostrarSlide(3)">
+            <div class="pie-imagen">Taller de Taekwondo</div> 
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/taekwondo2.jpg" alt="taekwondo2" onclick="abrirLightbox();mostrarSlide(4)">
+            <div class="pie-imagen">Taller de Taekwondo</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/Tallerdekpop.jpg" alt="tallerdekpop" onclick="abrirLightbox();mostrarSlide(5)">
+            <div class="pie-imagen">Taller de Kpop</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/Tallerdekpop1.jpg" alt="tallerdekpop1" onclick="abrirLightbox();mostrarSlide(6)">
+            <div class="pie-imagen">Taller de Kpop</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/Tallerdekpop2.jpg" alt="tallerdekpop2" onclick="abrirLightbox();mostrarSlide(7)">
+            <div class="pie-imagen">Taller de Kpop</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/Tallerdekpop3.jpg" alt="tallerdekpop3" onclick="abrirLightbox();mostrarSlide(8)">
+            <div class="pie-imagen">Taller de Kpop</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/Tallerdekpop4.jpg" alt="tallerdekpop4" onclick="abrirLightbox();mostrarSlide(9)">
+            <div class="pie-imagen">Taller de Kpop</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/Tallerdekpop5.jpg" alt="tallerdekpop5" onclick="abrirLightbox();mostrarSlide(10)">
+            <div class="pie-imagen">Random dance de Kpop</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/porristas.jpg" alt="porristas" onclick="abrirLightbox();mostrarSlide(11)">
+            <div class="pie-imagen">Grupo de porristas</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/ballet1.jpg" alt="ballet1" onclick="abrirLightbox();mostrarSlide(12)">
+            <div class="pie-imagen">Taller de Ballet</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/musica.jpg" alt="musica" onclick="abrirLightbox();mostrarSlide(13)">
+            <div class="pie-imagen"></div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/musica1.jpg" alt="musica1" onclick="abrirLightbox();mostrarSlide(14)">
+            <div class="pie-imagen"></div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/piano.jpg" alt="piano" onclick="abrirLightbox();mostrarSlide(15)">
+            <div class="pie-imagen">Recital de piano</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/piano1.jpg" alt="piano1" onclick="abrirLightbox();mostrarSlide(16)">
+            <div class="pie-imagen">Recital de piano</div>
+        </div> 
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/dibujo.jpg" alt="dibujo" onclick="abrirLightbox();mostrarSlide(17)">
+            <div class="pie-imagen">Taller de dibujo</div>
+        </div>
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/dibujo1.jpg" alt="dibujo1" onclick="abrirLightbox();mostrarSlide(18)">
+            <div class="pie-imagen">Taller de dibujo</div>
+        </div> 
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/danzapolinesia.jpg" alt="danzapolinesia" onclick="abrirLightbox();mostrarSlide(19)">
+            <div class="pie-imagen">Danza Polinesia</div>
+        </div> 
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/danzapolinesia1.jpg" alt="danzapolinesia1" onclick="abrirLightbox();mostrarSlide(20)">
+            <div class="pie-imagen">Danza Polinesia</div>
+        </div> 
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/fotografia.jpg" alt="fotografia" onclick="abrirLightbox();mostrarSlide(21)">
+            <div class="pie-imagen">Exposición de Fotografía</div>
+        </div> 
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/fotografia1.jpg" alt="fotografia1" onclick="abrirLightbox();mostrarSlide(22)">
+            <div class="pie-imagen">Exposición de Fotografía</div>
+        </div> 
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/bandazuan.jpg" alt="bandazuan" onclick="abrirLightbox();mostrarSlide(23)">
+            <div class="pie-imagen">Banda Zuan en CCH</div>
+        </div> 
+        <div class="elemento-galeria">
+            <img src="Fotos para Galería/bandazuan1.jpg" alt="bandazuan1" onclick="abrirLightbox();mostrarSlide(24)">
+            <div class="pie-imagen">Banda Zuan en CCH</div>
+        </div> 
+
+
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <span class="cerrar" onclick="cerrarLightbox()">&times;</span>
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/mural.jpg" alt="mural">
+            <div class="pie-lightbox">Mural DiCu</div>
+        </div>
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/taekwondo.jpg" alt="taekwondo">
+            <div class="pie-lightbox">Taller de Taekwondo</div>
+        </div>
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/taekwondo1.jpg" alt="taekwondo1">
+            <div class="pie-lightbox">Taller de Taekwondo</div>
+        </div>
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/taekwondo2.jpg" alt="taekwondo2">
+            <div class="pie-lightbox">Taller de Taekwondo</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/tallerdekpop.jpg" alt="tallerdekpop">
+            <div class="pie-lightbox">Taller de Kpop</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/tallerdekpop1.jpg" alt="tallerdekpop1">
+            <div class="pie-lightbox">Taller de Kpop</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/tallerdekpop2.jpg" alt="tallerdekpop2">
+            <div class="pie-lightbox">Taller de Kpop</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/tallerdekpop3.jpg" alt="tallerdekpop3">
+            <div class="pie-lightbox">Taller de Kpop</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/tallerdekpop4.jpg" alt="tallerdekpop4">
+            <div class="pie-lightbox">Taller de Kpop</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/tallerdekpop5.jpg" alt="tallerdekpop5">
+            <div class="pie-lightbox">Random dance de Kpop</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/porristas.jpg" alt="porristas">
+            <div class="pie-lightbox">Grupo de porristas</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/ballet1.jpg" alt="ballet1">
+            <div class="pie-lightbox">Taller de Ballet</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/musica.jpg" alt="musica">
+            <div class="pie-lightbox"></div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/musica1.jpg" alt="musica1">
+            <div class="pie-lightbox"></div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/piano.jpg" alt="piano">
+            <div class="pie-lightbox">Recital de Piano</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/piano1.jpg" alt="piano1">
+            <div class="pie-lightbox">Recital de Piano</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/dibujo.jpg" alt="dibujo">
+            <div class="pie-lightbox">Taller de dibujo</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/dibujo1.jpg" alt="dibujo1">
+            <div class="pie-lightbox">Taller de dibujo</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/danzapolinesia.jpg" alt="danzapolinesia">
+            <div class="pie-lightbox">Danza Polinesia</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/danzapolinesia1.jpg" alt="danzapolinesia1">
+            <div class="pie-lightbox">Danza Polinesia</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/fotografia.jpg" alt="fotografia">
+            <div class="pie-lightbox">Exposición de fotografía</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/fotografia1.jpg" alt="fotografia1">
+            <div class="pie-lightbox">Exposición de fotografía</div>
+        </div> 
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/bandazuan.jpg" alt="bandazuan">
+            <div class="pie-lightbox">Banda Zuan en CCH</div>
+        </div>  
+        <div class="contenido-lightbox">
+            <img class="slide-lightbox" src="Fotos para Galería/bandazuan1.jpg" alt="bandazuan1">
+            <div class="pie-lightbox">Banda Zuan en CCH</div>
+        </div> 
+    </div>
+    
+    <script>
+        function abrirLightbox() {
+            document.body.style.overflow = 'hidden';
+            document.getElementById('lightbox').style.display = "flex";
+        }
+
+        function cerrarLightbox() {
+            document.body.style.overflow = 'auto';
+            document.getElementById('lightbox').style.display = "none";
+        }
+
+        function mostrarSlide(n) {
+            var i;
+            var slides = document.getElementsByClassName("contenido-lightbox");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[n-1].style.display = "block";
+        }
+    </script>
+</body>
+</html>

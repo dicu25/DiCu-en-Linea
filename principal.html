@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Difusión Cultural</title>
+    <link rel="stylesheet" type="text/css" href="secciones/paneleslaterales.css">
+    <link rel="stylesheet" type="text/css" href="secciones/panelesuperiores.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #581845;
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+        .contenedor-principal {
+            display: grid;
+            grid-template-rows: 70px 90px 1fr;
+            height: 100vh;
+        }
+        
+        .contenedor-filtrado {
+            display: grid;
+            grid-template-columns: 23% 1fr 20%;
+            height: 100%;
+        }
+        .titulo {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+        }
+        .redes {
+            background-color: purple;
+            color: white;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            height: 100%;
+            box-shadow: 0px 0px 10px black;
+        }
+        .inst {
+            display: flex;
+            grid-template-columns: 33.3% 33.3% 33.3%;
+        }
+        .social img {
+            transition: all 0.4s ease;
+        }
+        .social img:hover {
+            transform: scale(1.2);
+            z-index: 1;
+        }
+        .base1 {
+            box-shadow: 0px 0px 10px black;
+        }
+        .izquierda {
+            background-color: #C70039;
+            color: #FFC300;
+            box-shadow: 0px 0px 10px black;
+        }
+        .centro {
+            background-color: #FFC300;
+            box-shadow: 0px 0px 10px black;
+            min-height: 400px;
+            max-height: 100vh;
+        }
+        .presentacion {
+            position: relative;
+            width: 90%;
+            height: 60%;
+            margin: auto;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px black;
+        }
+        .diapositiva {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .diapositiva img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .pie-imagen {
+            text-align: center;
+            font-size: 20px;
+            font-family: Brush Script MT;
+            padding: 7px;
+            color: #581845;
+        }
+        .desvanecimiento {
+            animation-name: desvanecer;
+            animation-duration: 1.5s;
+        }
+        @keyframes desvanecer {
+            from {opacity: 0.4}
+            to {opacity: 1}
+        }
+        .derecha {
+            background-color: #C70039; 
+            box-shadow: 0px 0px 10px black;
+        }
+        .caja {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Media Queries para diferentes dispositivos */
+
+        /* Pantallas grandes (escritorios) */
+        @media (min-width: 1200px) {
+            .contenedor-filtrado {
+                grid-template-columns: 20% 1fr 15%;
+            }
+            .titulo {
+                font-size: 40px;
+            }
+            .redes {
+                grid-template-columns: 50% 50%;
+            }
+        }
+
+        /* Laptops y pantallas medianas */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .contenedor-filtrado {
+                grid-template-columns: 25% 1fr 20%;
+            }
+            .titulo {
+                font-size: 35px;
+            }
+        }
+
+        /* Tabletas y móviles grandes */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .contenedor-filtrado {
+                grid-template-columns: 30% 1fr 30%;
+            }
+            .titulo {
+                font-size: 30px;
+            }
+            .redes {
+                grid-template-columns: 50% 50%;
+            }
+        }
+
+        /* Móviles pequeños */
+        @media (max-width: 767px) {
+            .contenedor-filtrado {
+                grid-template-columns: 1fr;
+            }
+            .titulo {
+                font-size: 20px;
+            }
+            .redes {
+                grid-template-columns: 1fr;
+            }
+            .inst {
+                grid-template-columns: 1fr;
+            }
+            .social {
+                position: fixed;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+                gap: 1px;
+                z-index: 2;
+            }
+            .presentacion {
+                height: 80%;
+            }
+        }
+        .creditos {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #333;
+            cursor: pointer;
+        }
+        .tooltip {
+            visibility: hidden;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            bottom: 30px;
+            right: 0;
+            z-index: 1;
+            font-size: 12px;
+            width: 200px;
+            word-wrap: break-word;
+        }
+        .creditos:hover .tooltip {
+            visibility: visible;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="content">
+
+    <div class="contenedor-principal">
+        <div class="caja titulo" align="center">Difusión Cultural | CCH Azcapotzalco</div>
+        <div class="caja redes">
+            <div class="inst">
+                <a href="https://www.unam.mx/" target="_blank" style="color: white;"><div class="UNAM">UNAM</div></a>
+                <a href="https://www.cch.unam.mx/" target="_blank" style="color: white;"><div class="UNAM">CCH</div></a>
+                <a href="https://www.cchazc.unam.mx/" target="_blank" style="color: white;"><div class="UNAM">CCH AZC</div></a>
+            </div>
+            <div class="social" align="right">
+                <a href="https://www.facebook.com/DICUAZC/" target="_blank"><img src="secciones/Iconos/logf.png" width="60px" class="sociales"></a>
+                <a href="https://www.instagram.com/difusion_cultural_cchazc/?igsh=OTcxNzRwdmRiZmJw#" target="_blank"><img src="secciones/Iconos/logi.png" width="60px" class="sociales"></a>
+                <a href="https://www.tiktok.com/@dicucchazcapo?_t=8nL4dksG6Oz&_r=1" target="_blank"><img src="secciones/Iconos/logt.png" width="60px" class="sociales"></a>
+            </div>
+        </div>
+        <div class="contenedor-filtrado caja base1">
+            <div class="caja izquierda">
+                ¿Quienes Somos?
+                <h3>Integrado por:</h3>
+                <div class="persona1">
+                    <div class="img"><img src="secciones/Iconos/persona.png" width="100%"></div>
+                    <div class="ote">Lic. Otelo Granados Reyes</div>
+                </div>
+                <br>
+                <div class="persona2">
+                    <div class="fran">Prof. Francisco Morales Isidro</div>
+                    <div class="img2"><img src="secciones/Iconos/persona.png" width="100%"></div>
+                </div>
+                <br>
+                <div class="misión" align="center">
+                    <h3>Misión</h3>
+                    <div class="misióntext">Promover y difundir las diferentes manifestaciones del arte y las expresiones culturales.</div>
+                </div>
+                <div class="visión" align="center">
+                    <h3>Visión</h3>
+                    <div class="visióntext">Tenemos la visión de complementar y apoyar la formación interdisciplinaria humanista, artística, salud física y emocional de los estudiantes del CCH Azcapotzalco.</div> 
+                </div>
+            </div>
+            <div class="caja centro" id="contenido-centro" align="center">
+                <br><br>    
+                <div class="presentacion">
+                    <div class="diapositiva desvanecimiento">
+                        <img src="Vista DiCu/D8.jpg" alt="img9">
+                    </div>
+                    <div class="diapositiva desvanecimiento">
+                        <img src="Vista DiCu/D9.jpg" alt="imgb">
+                    </div>
+                    <div class="diapositiva desvanecimiento">
+                        <img src="Vista DiCu/D3.jpg" alt="imgc">
+                    </div>
+                    <div class="diapositiva desvanecimiento">
+                        <img src="Vista DiCu/D4.jpg" alt="img5">
+                    </div>
+                    <div class="diapositiva desvanecimiento">
+                        <img src="Vista DiCu/D2.jpg" alt="img9">
+                    </div>
+                </div>
+                <div class="pie-imagen">Departamento de Difusión Cultural</div>
+            </div>
+            <div class="caja derecha">
+                <div class="opciones" onclick="cambiarContenido('secciones/ActividadesEnLinea.html')" title="Talleres en linea, conferencias, convocatorias a eventos">Actividades en Linea</div>
+                <div class="opciones" onclick="cambiarContenido('secciones/MuseosYFilmotecaUNAM.html')" title="Museos y Filmoteca UNAM">Museos y Filmoteca UNAM</div>
+                <div class="opciones" onclick="cambiarContenido('secciones/UbicacionCCH.html')" title="Ubicacion en CCH">Ubicación en CCH</div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+        <div class="creditos">
+            Acerca de...
+            <span class="tooltip">Tania Duarte | Prácticas de Diseño de Páginas Web y Base de Datos | Departamento de Difusión Cultural, CCH.</span>
+        </div>
+    </footer>
+                            
+<script>
+    function cambiarContenido(url) {
+        const contenedor = document.getElementById('contenido-centro');
+        contenedor.innerHTML = '<iframe src="' + url + '" style="width: 100%; height: 100%; border: none;"></iframe>';
+    }
+     
+    let indiceDiapositiva = 0;
+    mostrarDiapositivas();
+    function mostrarDiapositivas(){
+        let diapositivas = document.getElementsByClassName("diapositiva");
+        for (let i = 0; i < diapositivas.length; i++) {
+            diapositivas[i].style.display = "none";
+        }
+        indiceDiapositiva++;
+        if (indiceDiapositiva > diapositivas.length) {indiceDiapositiva = 1}
+        diapositivas[indiceDiapositiva - 1].style.display = "block";
+        setTimeout(mostrarDiapositivas, 3000);
+    }
+</script>
+</body>
+</html>
